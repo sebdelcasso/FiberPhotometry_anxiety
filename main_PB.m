@@ -1,6 +1,4 @@
-%% time tracking
-% SD: 20231023, 0.5h
-% SD 20231025, 10 min.
+%% Lea
 
 
 % updated on March 8, 2022. Beyeler lab, INSERM.
