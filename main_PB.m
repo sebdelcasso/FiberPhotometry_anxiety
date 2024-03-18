@@ -1,3 +1,8 @@
+%% time tracking
+% SD: 20231023, 0.5h
+% SD 20231025, 10 min.
+
+
 % updated on March 8, 2022. Beyeler lab, INSERM.
 %This script calls getBatchAnalysisConfig_PB to locate the input folder
 %with three files - 1) video file in .avi format; 2) .mat file containing the fiber
@@ -16,15 +21,7 @@ tic;t0=toc;
 % for open-feild test - batchID='test_OFT'
 % for sucrose-quinine test - batchID='test_Sucrose-Quinine'
 % for foot shock test -  batchID='test_Foot-shock'
-% batchID='test_EPM';
-% batchID='CN_TailSuspension_20220518';
-% batchID='CN_FootShocks_20220518';
-% batchID='test_OFT';
-% batchID='test_EPM';
-% batchID='test_OFT';
-% batchID='test_NSFT';
-% batchID='CN_TailSuspension_20220518'
-batchID='CN_Sucrose_20220518';
+batchID='CN_TailSuspension_20220518';
 
 %select and open 'getBatchAnalysisConfig_PB'. make sure that 'Function' folder
 %is also under working directory. Read and follow the instructions before
@@ -126,15 +123,9 @@ for iFolder=1:nFolders
             
         end
         
-%         if experiment.p.extract_bites_from_audio
-%             [audioEvents_sec,timeLag,nSTD,audioDetectionGap_sec] = nsft_getAudioEvents_05(experiment);
-%         end
-        
         if experiment.p.event_analysis
             experiment = eventBasedAnalysis_20220518_PB(experiment);
         end
-        
-        
 
            
         %% SAVING DATA

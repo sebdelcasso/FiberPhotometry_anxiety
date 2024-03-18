@@ -5,7 +5,7 @@ function output = loadPhotometryData(params)
 % fip matlab program (this has been tested three times at different
 % moment 3/2018, 09/2018
 
-    output = []
+    output = [];
     load([params.dataRoot filesep params.dataFileTag '.mat']);
    
     if ~exist('ref')                

@@ -87,7 +87,17 @@ switch p.apparatus.type
         vData.corners.y = yCorners;
         vData.Object.x = vData.landmarks.x(5);
         vData.Object.y = vData.landmarks.y(5);
-        apparatusDesign_cm=getHomeCageDesign(p.apparatus);               
+        apparatusDesign_cm=getHomeCageDesign(p.apparatus);      
+        
+    case 'ThreeChambers'
+        vData.landmarksStr={'Z1 Top Left','Z2 Top Left','Z3 Top Left','Z3 Top Right','Z3 Bottom Right','Z1 Bottom Left'};
+        vData.landmarks=getLandmarks(p,vData.landmarksStr);
+        xCorners = vData.landmarks.x([1,4,5,6]);
+        yCorners = vData.landmarks.y([1,4,5,6]);
+        [xCorners,yCorners]=reorderPointsClockwise(xCorners,yCorners);
+        vData.corners.x = xCorners;
+        vData.corners.y = yCorners;
+        apparatusDesign_cm=getThreeChambersDesign(p.apparatus);             
         
 end
 

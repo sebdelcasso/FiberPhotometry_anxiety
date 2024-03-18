@@ -7,7 +7,7 @@ binSizes = diff(edges_msec);
 binCenters_msec = edges_msec(1:end-1) + (binSizes/2);
      
 bulkSignal = experiment.pData.mainSig;
-idx_transients = [experiment.pData.transients(:).iMax];
+idx_transients = [experiment.pData.transients(:).loc];
 
 
 if isfield(experiment.p,'extract_bites_from_audio')
@@ -29,7 +29,7 @@ if isempty(idx_synchro)
 end
 
 [experiment.pData.bulkPETH.matrix,experiment.pData.transientsPETH.matrix] = getPSTHData(idx_synchro,bulkSignal,idx_transients,edges_msec,sfreq,nFrames);
-experiment.pData.eventsPETH = experiment.pData.num0(idx_synchro);
+%experiment.pData.eventsPETH = experiment.pData.num0(idx_synchro);
 [r,c]=size(experiment.pData.bulkPETH.matrix);
 if r>1
     experiment.pData.bulkPETH.nanmean = nanmean(experiment.pData.bulkPETH.matrix);

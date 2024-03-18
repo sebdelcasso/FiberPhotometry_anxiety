@@ -33,21 +33,9 @@ function experiment = getZonesStatistics_TimeBins_PB(experiment)
         nZones = size(vData.zones_cmSP,2);
         [zoneTime_fr_tmp,outTime_fr_tmp]=framesInZone(inZone_tmp,nZones);
 
-        nT = size(pData.transients,2);
-        tmp = pData.transients;
-
-        toKeep = [];
-        for iT = 1:nT
-            ii1 = find(tmp(iT).indices<iFrame1);
-            ii2 = find(tmp(iT).indices>iFrame2);
-            ii3 = [ii1 ii2];
-            if isempty(ii3)
-                toKeep = [toKeep iT];
-            end
-        end
-
-        tmp = tmp(toKeep);
-        pData.transientPeriodStats{iTimePeriod}=transientsPerZone(inZone,nZones,zoneTime_fr_tmp,tmp);
+        selected_transients = select_transients(pData.transients, iFrame1, iFrame2)
+        
+        pData.transientPeriodStats{iTimePeriod}=transientsPerZone(inZone,nZones,zoneTime_fr_tmp,selected_transients);
         pData.bulkPeriodStats{iTimePeriod} = bulkSignalPerZone(inZone_tmp,nZones,zoneTime_fr_tmp,pData.mainSig(iFrame1:iFrame2));           
                
         if ~isfield(vData.videoInfo,'FrameRate')
@@ -70,6 +58,31 @@ function experiment = getZonesStatistics_TimeBins_PB(experiment)
     close_all_files(fods);
 
 end
+
+
+function selected_transients = select_transients(tr, frame_start_idx, frame_stop_idx)
+    nT = size(tr.time,2);
+    toKeep = [];
+    for iT = 1:nT
+        ii1 = find(tr.loc(iT)<frame_start_idx);
+        ii2 = find(tr.loc(iT)>frame_stop_idx);
+        ii3 = [ii1 ii2];
+        if isempty(ii3)
+            toKeep = [toKeep iT];
+        end
+    end
+
+    selected_transients =  struct('time',tr.time(toKeep),...
+    'loc',tr.loc(toKeep),...
+    'peak',tr.peak(toKeep),...
+    'width',tr.width(toKeep),...
+    'prominence',tr.prominence(toKeep),...
+    'MinPeakDistance',tr.MinPeakDistance,...
+    'MinPeakProminence',tr.MinPeakProminence)
+    
+    
+end
+
 
 function close_all_files(fods)
     for i=1:size(fods,1)       

@@ -4,8 +4,8 @@ clear all; clc
 
 %   load('mamap.mat');
 
-path='S:\_Céline\Papers\aIC anxiety and valence\Submission R1\For submission R1\Heatmap\EPM\pIC';
-outputpath='S:\_Céline\Papers\aIC anxiety and valence\Submission R1\For submission R1\Heatmap\EPM\pIC';
+path='C:\Users\agonzalez\Desktop\_Alba\pruebas analisis fotometria\EPM_aIC-BLA_allmice\Output\Input';
+outputpath='C:\Users\agonzalez\Desktop\_Alba\pruebas analisis fotometria\EPM_aIC-BLA_allmice\Output\Input';
 
 dirOutput=dir(fullfile(path,'*.mat'));
 fileNames={dirOutput.name};

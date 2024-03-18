@@ -27,14 +27,20 @@ switch p.apparatus.type
          vData.zones_cmSP=fourspacesDesing2Zones(experiment.apparatusDesign_cmSP,vData);    
                  
      case 'SI'
-         vData.zones_cmSP=socialDesing2Zones(experiment.apparatusDesign_cmSP,p.socialDistance_cm);              
+         vData.zones_cmSP=socialDesing2Zones(experiment.apparatusDesign_cmSP,p.socialDistance_cm);       
+         
      case 'TASTE'
          switch p.zoningMethod
              case 'port'
                    vData.zones_cmSP=tasteFourPortsDesing2Zones(experiment.apparatusDesign_cmSP,p.tasteDistance_cm);       
              case 'quadrant'
                   vData.zones_cmSP=quandrants2Zones(experiment.apparatusDesign_cmSP);
-         end        
+         end
+         
+    case 'ThreeChambers'
+         vData.zones_cmSP=threeChambersDesing2Zones(experiment.apparatusDesign_cmSP);           
+         
+         
 end
 experiment.vData=vData;
 end

@@ -101,11 +101,11 @@ if isempty(iBehavioralStarts), iBehavioralStarts=0; end
 % end
 
 %% DETECT EXPERIMENTER STARTS BEHAVIOR
-nFramesToRemove = max([p.HamamatsuFrameRate_Hz*60 iBehavioralStarts(1)]); %remove the first minute of the signal due to bleeching at the beginning of the fiber-photometry recording
+nFramesToRemove = max([p.HamamatsuFrameRate_Hz*p.remove_high_bleaching_period_sec iBehavioralStarts(1)]); %remove the first minute of the signal due to bleeching at the beginning of the fiber-photometry recording
 
 %% DETECT EXPERIMENTER STARTS BEHAVIOR IS TOO DIFFICULT FOR NSFT
 if strcmp(p.apparatus.type,'NSFT')
-    nFramesToRemove = p.HamamatsuFrameRate_Hz*60; %remove the first minute of the signal due to bleeching at the beginning fot he fiber-photometry recording
+    nFramesToRemove = p.HamamatsuFrameRate_Hz*p.remove_high_bleaching_period_sec; %remove the first minute of the signal due to bleeching at the beginning fot he fiber-photometry recording
 end
 
 

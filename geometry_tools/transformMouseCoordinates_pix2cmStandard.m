@@ -116,7 +116,17 @@ switch p.apparatus.type
         y2 = vData.corners.y(3);
         ampX = abs(x2-x1);
         ampY = abs(y2-y1);
-        p.apparatus.ref_pix = mean([ampX ampY]);                
+        p.apparatus.ref_pix = mean([ampX ampY]);          
+        
+    case 'ThreeChambers'         
+        x1 = vData.corners.x(1);
+        y1 = vData.corners.y(1);
+        x2 = vData.corners.x(3);
+        y2 = vData.corners.y(3);
+        ampX = abs(x2-x1);
+        ampY = abs(y2-y1);
+        p.apparatus.ref_pix = mean([ampX/3 ampY/2]);     
+        
         
 end
 
@@ -210,7 +220,8 @@ switch p.apparatus.type
         p.apparatus.ref_cm = p.apparatus.side_cm;        
     case '4SPACES'
         p.apparatus.ref_cm = p.apparatus.side_cm;      
-        
+    case 'ThreeChambers'
+        p.apparatus.ref_cm = p.apparatus.chamber_width_cm;              
         
 end
 

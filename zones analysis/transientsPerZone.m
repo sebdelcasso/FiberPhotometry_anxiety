@@ -7,13 +7,13 @@ transientStats.zonesProba=nan(1,nZones);
 % allTransients_indices = [transients.indices];
 % if transientsStats.idx
 
-allTransientsIndices=[transients.iMax];
+allTransientsIndices=[transients.loc];
 transientStats.zones=inZone(allTransientsIndices);
-TransientsInstances=1:size(transients,2);
+TransientsInstances=1:size(transients.time,2);
 for iZone=1:nZones
     idx=find(transientStats.zones==iZone);
     idx = [TransientsInstances(idx)];
-    vMax = [transients.vMax];
+    vMax = [transients.prominence];
     vMax = vMax(idx);
     transientStats.zonesMeanAmp(iZone) = nanmean(vMax);
 end
