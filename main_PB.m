@@ -21,7 +21,7 @@ tic;t0=toc;
 % for open-feild test - batchID='test_OFT'
 % for sucrose-quinine test - batchID='test_Sucrose-Quinine'
 % for foot shock test -  batchID='test_Foot-shock'
-batchID='CN_TailSuspension_20220518';
+batchID='test_NSFT';
 
 %select and open 'getBatchAnalysisConfig_PB'. make sure that 'Function' folder
 %is also under working directory. Read and follow the instructions before

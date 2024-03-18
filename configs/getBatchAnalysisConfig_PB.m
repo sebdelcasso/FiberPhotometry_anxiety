@@ -128,9 +128,9 @@ switch batchID
     %% TailSuspension SPECIFIC PARAMETERS    
     case 'test_NSFT'
 
-        dataRoot{1} =  'S:\_Victor\2022_Obesity&Anxiety_Project\Photometry\HFD Photometry DATA\aIC_BLA\23012023_NSFT_aIC_BLA\Input';
+        dataRoot{1} =  'Y:\PhotometryAndBehavior\01_DATA\ONE_COLOR\20240205_aIC_pIC_HFD\NSFT';
         if isempty(outputFolder)
-            outputFolder = 'S:\_Victor\2022_Obesity&Anxiety_Project\Photometry\HFD Photometry DATA\aIC_BLA\23012023_NSFT_aIC_BLA\Output' ;
+            outputFolder = 'Y:\PhotometryAndBehavior\03_ANALYSIS\ONE_COLOR_analysis\20240208_aIC_pIC_HFD\NSFT' ;
         end
         journalFolder = outputFolder;
                
@@ -148,7 +148,7 @@ switch batchID
         analysisParameters.spatial_analysis = 1;
         analysisParameters.map_linearization = 0;
         analysisParameters.event_analysis = 1; 
-        analysisParameters.extract_bites_from_audio = 1;
+        analysisParameters.extract_bites_from_audio = 0;
         
         
         
