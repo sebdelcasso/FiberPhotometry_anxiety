@@ -125,7 +125,7 @@ switch batchID
         analysisParameters.map_linearization = 0;
         analysisParameters.event_analysis = 1;         
         
-    %% TailSuspension SPECIFIC PARAMETERS    
+    %% NSFT SPECIFIC PARAMETERS    
     case 'test_NSFT'
 
         dataRoot{1} =  'Y:\PhotometryAndBehavior\01_DATA\ONE_COLOR\20240205_aIC_pIC_HFD\NSFT';
@@ -149,6 +149,8 @@ switch batchID
         analysisParameters.map_linearization = 0;
         analysisParameters.event_analysis = 1; 
         analysisParameters.extract_bites_from_audio = 0;
+        analysisParameters.extract_events_from_kdenlive = 1;
+        analysisParameters.extract_events_from_eventstxtfile = 1;
         
         
         

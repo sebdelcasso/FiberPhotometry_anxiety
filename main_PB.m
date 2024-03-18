@@ -122,7 +122,7 @@ for iFolder=1:nFolders
         end
         
         if experiment.p.event_analysis
-            experiment = eventBasedAnalysis_20220518_PB(experiment);
+            experiment = eventBasedAnalysis(experiment);
         end
 
            
