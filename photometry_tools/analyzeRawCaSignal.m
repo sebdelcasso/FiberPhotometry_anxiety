@@ -27,12 +27,41 @@ function Ca = processBulkSignal(sig,ref,frameRate_Hz,removeFirstMinute)
     Ca.raw.sig = sig;
     Ca.raw.ref = ref;
 
-     % Lerner 2015, use din Beyeler lab since 20231027
+     % Lerner 2015, used in Beyeler lab since 20231027
     Ca.ref_fit = fit_iso (Ca.raw.ref, Ca.raw.sig);
     Ca.dff = calculate_dff(Ca.ref_fit, Ca.raw.sig);
+    
+    [Ca.zscore, Ca.clean_zscore] = process_zscore(Ca.dff);
+    
     Ca.mainSig = Ca.dff;
 
 
+end
+
+function [clean_zscore, zscore] = process_zscore(dff)
+
+     mean_bl = nanmean(dff);
+     std_bl = nanstd(dff);
+     zscore = (dff - mean_bl) / std_bl;
+     
+      nSamples = max(size(dff));
+     
+     [pks,locs,w,p] = findpeaks(z_score,'MinPeakHeight', 2.58, 'MinPeakProminence', 2);
+     dff_clean = dff;
+    n_pks = max(size(pks));
+    for i=1:n_pks
+        x = locs(i);      
+        i1 = floor(x - w(i));
+        i2 = floor(x + w(i));
+        i1 = max([i1,1]);
+        i2 = min([i2 nSamples]);
+        dff_clean(i1:i2)= nan(1,i2-i1+1)
+    end
+    
+    mean_bl = nanmean(dff_clean);
+    std_bl = nanstd(dff_clean);
+    clean_zscore = (dff - mean_bl) / std_bl;
+    
 end
 
 function fit_ = fit_iso(iso, physio)
