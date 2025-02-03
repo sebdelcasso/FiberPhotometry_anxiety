@@ -1,4 +1,5 @@
 HamamatsuFrameRate_Hz = 20;
+windowSize = HamamatsuFrameRate_Hz*5; % Sliding window size (number of points)
 
 dff_color = [49/255, 92/255, 43/255];
 variance_color = [6/255, 71/255, 137/255];
@@ -29,7 +30,7 @@ physio = physio(30*HamamatsuFrameRate_Hz:end);
   dff = calculate_dff(iso_fit, physio);
  
 
-windowSize = HamamatsuFrameRate_Hz*5; % Sliding window size (number of points)
+
 
 % Initialize variables
 n = length(dff);
@@ -42,10 +43,10 @@ for i = 1:n - windowSize + 1
     variances(i) = var(window);
 end
 
-treshold = prctile(variances,5);
+threshold = prctile(variances,5);
 
 % Identify low-variance periods
-lowVarianceIndices = find(variances < treshold);
+lowVarianceIndices = find(variances < threshold);
 
 % Mark low-variance periods on the original time series
 for idx = lowVarianceIndices
@@ -64,16 +65,21 @@ legend('DFF', 'Low-Variance Periods');
 grid on;
 subplot(3,2,1)
 hold on
+title('Variance (5s sliding window)');
  plot(variances, 'color', variance_color, 'LineWidth', 1.5);
  plot(lowVarianceIndices, variances(lowVarianceIndices), 'Marker', '.', 'MarkerSize', 10, 'MarkerFaceColor', treshold_color, 'LineStyle', 'none');
- yline(treshold, 'color', treshold_color)
+ yline(threshold, 'color', treshold_color)
  xlabel('Time');
 ylabel('Amplitude');
-legend('Variance', 'Low-Variance Periods');
+legend('Variance', '5th percentile threshold');
  grid on;
  subplot(3,2,2)
+ hold on
+ title('Variance Distribution');
  histogram(variances,100, 'Normalization', 'Probability','FaceColor', variance_color, 'EdgeColor', variance_color);
- xline(treshold, 'color', treshold_color)
+ xline(threshold, 'color', treshold_color)
+ xlabel('Variance');
+ylabel('Density');
  
  periods = detectLowVariancePeriods(dff, windowSize, threshold);
  
@@ -82,15 +88,21 @@ legend('Variance', 'Low-Variance Periods');
 baseline = dff(periods(i_max,1):periods(i_max,2));
 z_score = dff - nanmean(baseline) / nanstd(baseline)
 
-
-
+nanstd(baseline)
+ nanstd(dff)
+ 
+ nanmean(baseline)
+ nanmean(dff)
+ 
+ 
 subplot(3,2,[5 6])
 plot(z_score, 'color', dff_color, 'LineWidth', 1.5); hold on;
+plot(dff - nanmean(dff) / nanstd(dff), 'color', [.7 .5 .2], 'LineWidth', 1.5); hold on;
 plot(periods(i_max,1):periods(i_max,2), z_score(periods(i_max,1):periods(i_max,2)), 'color', treshold_color);
-title('Time Series with Detected Low-Variance Periods');
+title('Z-score');
 xlabel('Time');
 ylabel('Amplitude');
-legend('z_score');
+legend('z-score [baseline=longest low variance period]', 'z-score full session');
 grid on;
  
  
