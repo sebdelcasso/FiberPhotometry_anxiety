@@ -27,11 +27,11 @@ function Ca = processBulkSignal(sig,ref,frameRate_Hz,removeFirstMinute)
     Ca.raw.sig = sig;
     Ca.raw.ref = ref;
 
-     % Lerner 2015, use din Beyeler lab since 20231027
+     % Lerner 2015, used in Beyeler lab since 20231027
     Ca.ref_fit = fit_iso (Ca.raw.ref, Ca.raw.sig);
     Ca.dff = calculate_dff(Ca.ref_fit, Ca.raw.sig);
     
-    [Ca.zscore, Ca.clean_zscore] = process_zscore(dff);
+    [Ca.zscore, Ca.clean_zscore] = process_zscore(Ca.dff);
     
     Ca.mainSig = Ca.dff;
 
