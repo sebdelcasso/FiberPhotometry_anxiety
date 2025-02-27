@@ -9,7 +9,7 @@ else
 end
 
 
-%When animal detection was bad, w eplaced the animal in zone 0
+%When animal detection was bad, we placed the animal in zone 0
 % To avoid  conting zone_0 entrances we remove them
 % using the prev. pos of the animal
 

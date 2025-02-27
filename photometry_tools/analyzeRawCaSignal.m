@@ -7,7 +7,7 @@ function Ca=analyzeRawCaSignal(experiment)
     sig = pData.sig;
     ref = pData.ref;
     t = pData.T;
-    debug = 1;
+    debug = 0;
 
     frameRate_Hz = params.HamamatsuFrameRate_Hz;
     nSamples = size(sig,1);
@@ -33,7 +33,7 @@ function Ca = processBulkSignal(sig,ref,frameRate_Hz,removeFirstMinute)
     
     [Ca.zscore, Ca.clean_zscore] = process_zscore(Ca.dff);
     
-    Ca.mainSig = Ca.dff;
+    Ca.mainSig = Ca.zscore;
 
 
 end
@@ -55,7 +55,7 @@ function [clean_zscore, zscore] = process_zscore(dff)
         i2 = floor(x + w(i));
         i1 = max([i1,1]);
         i2 = min([i2 nSamples]);
-        dff_clean(i1:i2)= nan(1,i2-i1+1)
+        dff_clean(i1:i2)= nan(1,i2-i1+1);
     end
     
     mean_bl = nanmean(dff_clean);

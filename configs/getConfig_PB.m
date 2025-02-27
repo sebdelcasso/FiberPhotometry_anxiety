@@ -1,6 +1,5 @@
 function p = getConfig_PB(p,outputFolder,apparatus,videoExt)
 
-%%
 c = clock();
 
 p.batch_ouputFile = [outputFolder filesep sprintf('%04d%02d%02d-%02d%02d%02d',c(1),c(2),c(3),c(4),c(5),floor(c(6))) '.txt'];
@@ -49,11 +48,11 @@ p.lookingForMouse = '';
 p.bonzaiDone = 1;
 
 % Event Based Analysis
-p.eventBasedAnalysisEdges_msec = [-10000:50:10000]; 
-p.minimum_gap_between_events_msec = 10000;
+p.eventBasedAnalysisEdges_msec = [-3000:50:3000]; 
+p.minimum_gap_between_events_msec = 1000;
 p.keep_first_and_last_events_only = 0;
-p.eventBasedAnalysisBaselineWindow_msec = [-10000 -8000];
-p.eventBasedAnalysisMinMaxWindow_msec = [-2000 4000];
+p.eventBasedAnalysisBaselineWindow_msec = [-3000 -2000];
+p.eventBasedAnalysisMinMaxWindow_msec = [-3000 3000];
 
 % If you would like to divide the analysis in sub time periods you could
 % define p.time_bins_sec = start:step:stop

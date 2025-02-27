@@ -13,9 +13,7 @@ idx_transients = [experiment.pData.transients(:).loc];
 if isfield(experiment.p,'extract_bites_from_audio')
     [audioEvents_sec,timeLag,nSTD,audioDetectionGap_sec] = nsft_getAudioEvents_05(experiment);
     idx_synchro = discretize(audioEvents_sec, experiment.pData.t0);
-    idx_synchro(isnan(idx_synchro))=[];
-    
-    
+    idx_synchro(isnan(idx_synchro))=[];        
 else
     idx_synchro = findEventsIdx(experiment.vData.optoPeriod);
     dt_min_msec = experiment.p.minimum_gap_between_events_msec;
