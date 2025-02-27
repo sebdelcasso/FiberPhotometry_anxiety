@@ -18,7 +18,10 @@ if isfield(experiment.p,'extract_bites_from_audio')
     
 else
     idx_synchro = findEventsIdx(experiment.vData.optoPeriod);
-    idx_synchro=cleanEvents(idx_synchro,experiment.p.minimum_gap_between_events_msec,sfreq);
+    dt_min_msec = experiment.p.minimum_gap_between_events_msec;
+    warning(sprintf('Warning you are going to remove events that are too close to each other (dt < %d msec)',dt_min_msec));
+    beep();
+    idx_synchro=cleanEvents(idx_synchro,dt_min_msec,sfreq);
     warning('cleaning events only works for home-made Hamamatsu system');
 end
 
@@ -26,6 +29,11 @@ if isempty(idx_synchro)
     msg = sprintf('Please remove all the files starting with %s* from %s and restart the program',experiment.p.dataFileTag, experiment.p.dataRoot);
     warning(msg)
     pause
+end
+
+if experiment.p.keep_first_and_last_events_only
+    tmp = idx_synchro;
+    idx_synchro = [tmp(1);tmp(end)];
 end
 
 [experiment.pData.bulkPETH.matrix,experiment.pData.transientsPETH.matrix] = getPSTHData(idx_synchro,bulkSignal,idx_transients,edges_msec,sfreq,nFrames);

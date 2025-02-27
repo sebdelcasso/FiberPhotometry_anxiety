@@ -5,10 +5,10 @@ switch batchID
     
     %% OFT SPECIFIC PARAMETERS
     case 'test_OFT'                
-        dataRoot{1} =  'S:\_Céline\Manips\1. REVISION PAPER\Revision2_aIC\20221129_OFT\Inputs';
+        dataRoot{1} =  'Y:\PhotometryAndBehavior\03_ANALYSIS\ONE_COLOR_analysis\GRAB\GRAB_DA\D2-cre\aIC\OFT\input_zscore';
         
         if isempty(outputFolder)
-            outputFolder = 'S:\_Céline\Manips\1. REVISION PAPER\Revision2_aIC\20221129_OFT\Ouputs';
+            outputFolder = 'Y:\PhotometryAndBehavior\03_ANALYSIS\ONE_COLOR_analysis\GRAB\GRAB_DA\D2-cre\aIC\OFT\output_zscore';
         end
         
         journalFolder =  outputFolder;
@@ -29,9 +29,9 @@ switch batchID
                 
     %% EPM SPECIFIC PARAMETERS
     case 'test_EPM'
-        dataRoot{1} =  'S:\_Céline\Papers\aIC anxiety and valence\Submission R2\Analysis R2\Linear EPM R2\Input pIC';
+        dataRoot{1} =  'Y:\PhotometryAndBehavior\03_ANALYSIS\ONE_COLOR_analysis\GRAB\GRAB_DA\D2-cre\aIC\EPM\Input_zscore';
         if isempty(outputFolder)
-            outputFolder = 'S:\_Céline\Papers\aIC anxiety and valence\Submission R2\Analysis R2\Linear EPM R2\Output pIC' ;
+            outputFolder = 'Y:\PhotometryAndBehavior\03_ANALYSIS\ONE_COLOR_analysis\GRAB\GRAB_DA\D2-cre\aIC\EPM\output_zscore' ;
         end
         
         journalFolder = outputFolder;
@@ -104,9 +104,9 @@ switch batchID
         %% TailSuspension SPECIFIC PARAMETERS    
     case 'CN_FootShocks_20220518'
 
-        dataRoot{1} =  'S:\_Céline\Manips\1. REVISION PAPER\Revision2_pIC\20221027_Tail Suspension\inputs';
+        dataRoot{1} =  'S:\_Yoni\20250227_Meeting_Seb\Data_to_use\FS_First_Last\input';
         if isempty(outputFolder)
-            outputFolder = 'S:\_Céline\Manips\1. REVISION PAPER\Revision2_pIC\20221028_FS\Output' ;
+            outputFolder = 'S:\_Yoni\20250227_Meeting_Seb\Data_to_use\FS_First_Last\output' ;
         end
         journalFolder = outputFolder;
                
