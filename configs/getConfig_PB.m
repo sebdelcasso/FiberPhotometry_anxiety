@@ -1,5 +1,6 @@
 function p = getConfig_PB(p,outputFolder,apparatus,videoExt)
 
+%%
 c = clock();
 
 p.batch_ouputFile = [outputFolder filesep sprintf('%04d%02d%02d-%02d%02d%02d',c(1),c(2),c(3),c(4),c(5),floor(c(6))) '.txt'];
