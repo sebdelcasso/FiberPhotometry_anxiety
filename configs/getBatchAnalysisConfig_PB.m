@@ -29,9 +29,9 @@ switch batchID
                 
     %% EPM SPECIFIC PARAMETERS
     case 'test_EPM'
-        dataRoot{1} =  'S:\_Yoni\20250227_Meeting_Seb\Data_to_use\EPM_OA_entry\input';
+        dataRoot{1} =  'Y:\PhotometryAndBehavior\03_ANALYSIS\ONE_COLOR_analysis\dLight1.1\Batch1\20220829_EPM\Input\input_zscore';
         if isempty(outputFolder)
-            outputFolder = 'S:\_Yoni\20250227_Meeting_Seb\Data_to_use\EPM_OA_entry\output' ;
+            outputFolder = 'Y:\PhotometryAndBehavior\03_ANALYSIS\ONE_COLOR_analysis\dLight1.1\Batch1\20220829_EPM\Output\output_zscore\output_zscore_dff_good' ;
         end
         
         journalFolder = outputFolder;
@@ -56,7 +56,7 @@ switch batchID
                          
        
     %% Sucrose In OFT SPECIFIC PARAMETERS
-    case 'CN_Sucrose_20220518'
+    case 'test_SQ'
         
         dataRoot{1} =  'S:\_Céline\Manips\Manip for paper anxiety\2. REVISION 2\QUININE ALL\INPUT pIC';
         if isempty(outputFolder)
@@ -80,7 +80,7 @@ switch batchID
         analysisParameters.event_analysis = 1;
         
     %% TailSuspension SPECIFIC PARAMETERS    
-    case 'CN_TailSuspension_20220518'
+    case 'test_TS'
 
         dataRoot{1} =  'Y:\PhotometryAndBehavior\03_ANALYSIS\ONE_COLOR_analysis\20240208_aIC_pIC_HFD\20240220_Tailsuspension\input';
         if isempty(outputFolder)
@@ -104,7 +104,7 @@ switch batchID
         analysisParameters.event_analysis = 1;      
         
         %% TailSuspension SPECIFIC PARAMETERS    
-    case 'CN_FootShocks_20220518'
+    case 'test_footshock'
 
         dataRoot{1} =  'S:\_Yoni\20250227_Meeting_Seb\Data_to_use\FS_First_Last\input';
         if isempty(outputFolder)

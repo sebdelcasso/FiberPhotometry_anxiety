@@ -1,7 +1,3 @@
-%% time tracking
-% SD: 20231023, 0.5h
-% SD 20231025, 10 min.
-
 
 % updated on March 8, 2022. Beyeler lab, INSERM.
 %This script calls getBatchAnalysisConfig_PB to locate the input folder
@@ -20,9 +16,10 @@ tic;t0=toc;
 % for elevated plus maze - batchID= 'test_EPM'
 % for open-feild test - batchID='test_OFT'
 % for sucrose-quinine test - batchID='test_Sucrose-Quinine'
-% for foot shock test -  batchID='test_Foot-shock'
-% batchID='CN_FootShocks_20220518';
+% for foot shock test -  batchID='test_footshock'
+
 batchID='test_EPM';
+
 %select and open 'getBatchAnalysisConfig_PB'. make sure that 'Function' folder
 %is also under working directory. Read and follow the instructions before
 %coming back to this script and running it.

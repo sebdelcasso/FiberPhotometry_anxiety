@@ -33,8 +33,7 @@ function Ca = processBulkSignal(sig,ref,frameRate_Hz,removeFirstMinute)
     
     [Ca.zscore, Ca.clean_zscore] = process_zscore(Ca.dff);
     
-    Ca.mainSig = Ca.zscore;
-
+    Ca.mainSig = Ca.zscore; 
 
 end
 
@@ -48,7 +47,7 @@ function [clean_zscore, zscore] = process_zscore(dff)
      
      [pks,locs,w,p] = findpeaks(zscore,'MinPeakHeight', 2.58, 'MinPeakProminence', 2);
      dff_clean = dff;
-    n_pks = max(size(pks));
+    n_pks = size(pks, 2);
     for i=1:n_pks
         x = locs(i);      
         i1 = floor(x - w(i));
@@ -82,7 +81,7 @@ function dff = calculate_dff(iso_fit, physio)
 %     physio = physio - min_ + 1;
 %     iso_fit = iso_fit - min_ + 1;
     dff = (physio-iso_fit)./iso_fit;
-    dff = dff * 100;
+    %dff = dff * 100;
 end
 
 
@@ -114,7 +113,6 @@ function transients = get_transients(t, dff, debug)
     MinPeakGap_s = 0.5;
     MinPeakDistance = floor(MinPeakGap_s * fs);
     [pks,locs,w,p] = findpeaks(dff, 'MinPeakDistance', MinPeakDistance, 'MinPeakProminence', MinPeakProminence);
-
     
     transients.time = t(locs);
     transients.loc = locs;
@@ -131,8 +129,6 @@ function transients = get_transients(t, dff, debug)
     end
 
 end
-
-
 
 
 function plot_transients(transients_,t,sig,sig_str)
@@ -162,8 +158,3 @@ function plot_transients(transients_,t,sig,sig_str)
 
     ylim([(min_ - (amp_/4)) (max_ + (amp_))])
 end
-
-
-
-
-
