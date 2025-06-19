@@ -1,25 +1,26 @@
+
 clc; clear; close all
 
-fip = "E:\NAS_SD\SuiviClient\Beyeler\DATA\20230502_NSFT\Inputs\F2434.mat"
+% fip = "E:\NAS_SD\SuiviClient\Beyeler\DATA\20230502_NSFT\Inputs\F2434.mat"
 
 
-data_root = 'E:\NAS_SD\SuiviClient\Beyeler\DATA\20250311_LBN3_2_EPM'
+data_root = 'S:\___DATA\PhotometryAndBehavior\01_DATA\ONE_COLOR\20250321_LBN3\20250304_LBN3.1\20240225_LBN3_1_EPM'
 
 subdir_list = dir([data_root filesep '*'])
 n_subdir = size(subdir_list, 1);
 
 % We will process each mouse folder within the experiment folder
 for i=3:n_subdir
-    
+   
     folder = [data_root filesep subdir_list(i).name];
     item_list =  dir([folder filesep '*']); n_items = size(item_list, 1);
-    
+   
     for j=3:n_items
-        
+       
         if item_list(j).isdir
-            
+           
             folder2 = [folder filesep item_list(j).name];
-            
+           
             %look for a Fluorescence.csv file
             file_list =  dir([folder2 filesep 'Fluorescence.csv']);
              n_file = size(file_list, 1);
@@ -58,10 +59,19 @@ for i=3:n_subdir
                  labels = unique(channels);
                  signals_nm = unique(wavelength);
                  
-                 sig = readmatrix(fluo_path); 
-                 sig = sig';
-                 ts = sig(1,:);
-                 sig([1,2,5],:) = [];
+                 try
+                    sig = readmatrix(fluo_path);
+                    sig = sig';
+                    ts = sig(1,:);
+                    sig([1,2,5],:) = [];
+                 catch
+                     sig = readtable(fluo_path);                                          
+                     ts = table2array(sig(:,1));
+                     sig(:, [1,2,5]) = [];
+                     sig=table2array(sig);
+                     sig = sig';
+                 end
+
                  
                  save([data_root filesep sprintf('%s.mat', mouse)],'labels','sig','signals_nm','ts','datetime','params');
 
@@ -81,7 +91,7 @@ for i=3:n_subdir
              end
              
         end
-        
+       
     end
      
 end
