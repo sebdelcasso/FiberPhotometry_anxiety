@@ -7,6 +7,7 @@ function Ca=analyzeRawCaSignal(experiment)
     sig = pData.sig;
     ref = pData.ref;
     t = pData.T;
+    
     debug = 1;
 
     frameRate_Hz = params.HamamatsuFrameRate_Hz;
@@ -19,7 +20,7 @@ end
 function Ca = processBulkSignal(sig,ref,frameRate_Hz,removeFirstMinute)
     Ca=[];
     %% If this has not been taken care off earlier, this has to be done to remove autobleaching period that corrupt analysis
-    if(removeFirstMinute), sig(1:20*60)=[];ref(1:20*60)=[];end
+    if(removeFirstMinute), sig(1:frameRate_Hz*60)=[];ref(1:frameRate_Hz*60)=[];end
     %% Processing Bulk Signal
     Ca.nFrames = size(ref,1);
     Ca.T = 1: Ca.nFrames;
@@ -27,13 +28,20 @@ function Ca = processBulkSignal(sig,ref,frameRate_Hz,removeFirstMinute)
     Ca.raw.sig = sig;
     Ca.raw.ref = ref;
 
-     % Lerner 2015, used in Beyeler lab since 20231027
-    Ca.ref_fit = fit_iso (Ca.raw.ref, Ca.raw.sig);
-    Ca.dff = calculate_dff(Ca.ref_fit, Ca.raw.sig);
-    
-    [Ca.zscore, Ca.clean_zscore] = process_zscore(Ca.dff);
-    
-    Ca.mainSig = Ca.dff;
+    %  % Lerner 2015, used in Beyeler lab since 20231027
+    % Ca.ref_fit = fit_iso (Ca.raw.ref, Ca.raw.sig);
+    % Ca.dff = calculate_dff(Ca.ref_fit, Ca.raw.sig);
+    % 
+    % [Ca.zscore, Ca.clean_zscore] = process_zscore(Ca.dff);
+    % 
+    % Ca.mainSig = Ca.dff;
+
+    % Lerner 2015, utilisé dans le laboratoire Beyeler depuis le 27/10/2023
+	Ca.ref_fit = fit_iso(Ca.raw.ref, Ca.raw.sig);
+	Ca.dff = calculate_dff(Ca.ref_fit, Ca.raw.sig);
+	[Ca.zscore, Ca.clean_zscore] = process_zscore(Ca.dff);
+	% Ca.mainSig = Ca.dff;
+	Ca.mainSig = Ca.clean_zscore;
 
 
 end

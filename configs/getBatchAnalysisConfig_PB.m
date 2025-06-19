@@ -5,10 +5,10 @@ switch batchID
     
     %% OFT SPECIFIC PARAMETERS
     case 'test_OFT'                
-        dataRoot{1} =  'S:\_Céline\Manips\1. REVISION PAPER\Revision2_aIC\20221129_OFT\Inputs';
+        dataRoot{1} =  'S:\___DATA\Photometry and behavior-parts\02_ANALYSIS\20250224_GCaMP_5HT1A_batch1\OFT\Input';
         
         if isempty(outputFolder)
-            outputFolder = 'S:\_Céline\Manips\1. REVISION PAPER\Revision2_aIC\20221129_OFT\Ouputs';
+            outputFolder = 'S:\___DATA\Photometry and behavior-parts\02_ANALYSIS\20250224_GCaMP_5HT1A_batch1\OFT\Output';
         end
         
         journalFolder =  outputFolder;
@@ -29,9 +29,9 @@ switch batchID
                 
     %% EPM SPECIFIC PARAMETERS
     case 'test_EPM'
-        dataRoot{1} =  'S:\_Céline\Papers\aIC anxiety and valence\Submission R2\Analysis R2\Linear EPM R2\Input pIC';
+        dataRoot{1} =  'S:\___DATA\PhotometryAndBehavior\01_DATA\ONE_COLOR\20250401_LBN4\20250401_EPM\EPM\Analysis\input';
         if isempty(outputFolder)
-            outputFolder = 'S:\_Céline\Papers\aIC anxiety and valence\Submission R2\Analysis R2\Linear EPM R2\Output pIC' ;
+            outputFolder = 'S:\___DATA\PhotometryAndBehavior\01_DATA\ONE_COLOR\20250401_LBN4\20250401_EPM\EPM\Analysis\output';
         end
         
         journalFolder = outputFolder;
@@ -46,7 +46,7 @@ switch batchID
         apparatus{1}.CA_cm = 75; % Closed Arms Envergure
         apparatus{1}.W_cm = 5.3;     % Arms Width
         
-        videoExt{1}='avi';
+        videoExt{1}='mp4';
         
         analysisParameters.spatial_analysis = 1;
         analysisParameters.map_linearization = 1;
@@ -104,9 +104,9 @@ switch batchID
         %% TailSuspension SPECIFIC PARAMETERS    
     case 'CN_FootShocks_20220518'
 
-        dataRoot{1} =  'S:\_Céline\Manips\1. REVISION PAPER\Revision2_pIC\20221027_Tail Suspension\inputs';
+        dataRoot{1} =  'Y:\PhotometryAndBehavior\03_ANALYSIS\ONE_COLOR_analysis\GRAB\GRAB_DA\D1-cre\aIC\Batch4\20230331_FS\Input\input_zscore';
         if isempty(outputFolder)
-            outputFolder = 'S:\_Céline\Manips\1. REVISION PAPER\Revision2_pIC\20221028_FS\Output' ;
+            outputFolder = 'Y:\PhotometryAndBehavior\03_ANALYSIS\ONE_COLOR_analysis\GRAB\GRAB_DA\D1-cre\aIC\Batch4\20230331_FS\Output\output_zscore' ;
         end
         journalFolder = outputFolder;
                

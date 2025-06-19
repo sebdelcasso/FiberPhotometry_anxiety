@@ -1,6 +1,6 @@
 clear all; clc
-path=['C:\Users\epetru\Desktop\Desktop\Object Recognition Memory Test DATA\aIC Batch 1 (Rim)\NewAttempt\Output'];
-outputpath=['C:\Users\epetru\Desktop\Desktop\Object Recognition Memory Test DATA\aIC Batch 1 (Rim)\NewAttempt\Output'];
+path=['Y:\PhotometryAndBehavior\03_ANALYSIS\ONE_COLOR_analysis\GRAB\GRAB_DA\D1-cre\aIC\Batch4\20230328_EPM\Output\New_zscore\HM'];
+outputpath=['Y:\PhotometryAndBehavior\03_ANALYSIS\ONE_COLOR_analysis\GRAB\GRAB_DA\D1-cre\aIC\Batch4\20230328_EPM\Output\New_zscore\HM'];
 dirOutput=dir(fullfile(path,'*.mat'));
 fileNames={dirOutput.name};
 n=length(fileNames);
